@@ -1,0 +1,9 @@
+<form #addEvent="ngForm" (ngSubmit)="this.addSubmit.emit(addEvent)">
+  <div>
+    <label>Add new event</label>
+    <div class="flex">
+      <input type="text" id="eventTitle" name="eventTitle" value="" ngModel/>
+      <button type="submit">Submit</button>
+    </div>
+  </div>
+</form>

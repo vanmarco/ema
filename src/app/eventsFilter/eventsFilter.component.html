@@ -1,0 +1,10 @@
+<form>
+  <div>
+    <label for="eventsFilter">Filter events</label>
+    <select name="eventsFilter" (change)="this.filterChange.emit($event)">
+      <option value="all">All</option>
+      <option value="1">Mine</option>
+      <option value="other">Others</option>
+    </select>
+  </div>
+</form>

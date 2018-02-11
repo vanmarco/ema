@@ -1,0 +1,11 @@
+<div class="events" *ngIf="eventsState$ | async as eventsState">
+  <div class="flex flex--space-between">
+    <events-search (searchChange)="onEventsSearchChange($event)"></events-search>
+    <events-filter (filterChange)="onEventsFilterChange($event)"></events-filter>
+  </div>
+  <ng-container *ngFor="let event of eventsState.events">
+    <event [event]="event" *ngIf="event.filtered" (details)="onToggleEventDetails(event.id)" (duplicate)="onDuplicateEvent(event.id)" (delete)="onDeleteEvent(event.id)">
+    </event>
+  </ng-container>
+  <event-add (addSubmit)="onAddSubmit($event)"></event-add>
+</div>
