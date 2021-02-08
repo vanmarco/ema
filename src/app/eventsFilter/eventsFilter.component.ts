@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { filterEvents } from '../event/event.action';
 
 @Component({
   selector: 'events-filter',
@@ -6,5 +9,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 
 export class EventsFilterComponent {
-  @Output() filterChange = new EventEmitter<any>();
+  constructor(private store: Store) {}
+
+  filter(event) {
+    const filter = event.target.value;
+    this.store.dispatch(filterEvents({filter, search: null}));
+  }
 }

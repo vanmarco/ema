@@ -1,27 +1,29 @@
-<div [ngClass]="getEventClass()">
+<div class="event test" [ngClass]="eventClass">
   <header class="event__header">
     <p class="event__title">{{ event.title }}</p>
     <div class="event__actions">
-      <a href="#" (click)="this.duplicate.emit(event.id)" class="duplicate">
+      <a href="#" class="duplicate" (click)="duplicate()" >
         <span>Duplicate</span>
       </a>
-      <a href="#" (click)="this.delete.emit(event.id)" class="delete">
+      <a href="#" class="delete" (click)="delete()">
         <span>Delete</span>
       </a>
     </div>
   </header>
-  <div class="event__info" *ngIf="event.details">
+  <div *ngIf="detailsVisible" class="event__info" >
     <div>
       <p>{{ event.location }}</p>
       <p>
         <time>{{ event.dateStart | date }}</time> - <time>{{ event.dateEnd | date }}</time>
       </p>
     </div>
-    <div class="event__description">{{ event.description }}</div>
+    <div class="event__description">
+      {{ event.description }}
+    </div>
   </div>
   <div>
-    <a href="#" (click)="this.details.emit(event.id)" class="more">
-      <span>{{ event.details && 'Hide' || 'Show' }} details</span>
+    <a href="#" class="more" (click)="toggleDetails()">
+      <span>{{ detailsVisible && 'Hide' || 'Show' }} details</span>
     </a>
   </div>
 </div>

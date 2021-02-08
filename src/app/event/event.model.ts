@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 export class Event {
   id: string;
   title: string;
@@ -7,12 +8,15 @@ export class Event {
   location: string;
   ownerId: string;
 
-  constructor(title) {
-    const tommorrow = new Date();
+  constructor(title: string) {
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    this.id = uuid();
     this.title = title;
     this.description = 'Default event description';
-    this.dateStart = new Date();
-    this.dateEnd = new Date(tommorrow.setDate(tommorrow.getDate() + 1));
+    this.dateStart = today;
+    this.dateEnd = tomorrow;
     this.location = 'Bratislava';
     this.ownerId = '1'; // Assign all new events to current user
   }

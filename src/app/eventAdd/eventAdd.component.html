@@ -1,4 +1,4 @@
-<form #addEvent="ngForm" (ngSubmit)="this.addSubmit.emit(addEvent)">
+<form #form="ngForm" (ngSubmit)="submit(form)">
   <div>
     <label>Add new event</label>
     <div class="flex">

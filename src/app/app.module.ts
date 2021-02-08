@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { EventComponent } from './event/event.component';
@@ -30,7 +31,11 @@ import { EventsSearchComponent } from './eventsSearch/eventsSearch.component';
     CommonModule,
     EffectsModule.forRoot([EventEffects]),
     FormsModule,
-    StoreModule.forRoot({events: eventsReducer.eventsReducer}),
+    StoreModule.forRoot({events: eventsReducer.reducer}),
+    StoreDevtoolsModule.instrument({
+      logOnly: false, // Restrict extension to log-only mode
+      maxAge: 25 // Retains last 25 states
+    }),
     HttpClientModule
   ],
   providers: [
@@ -38,4 +43,4 @@ import { EventsSearchComponent } from './eventsSearch/eventsSearch.component';
   ]
 })
 
-export class AppModule { }
+export class AppModule {}

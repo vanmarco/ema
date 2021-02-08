@@ -1,11 +1,23 @@
-<div class="events" *ngIf="eventsState$ | async as eventsState">
+<div class="events" >
   <div class="flex flex--space-between">
-    <events-search (searchChange)="onEventsSearchChange($event)"></events-search>
-    <events-filter (filterChange)="onEventsFilterChange($event)"></events-filter>
+    <events-search></events-search>
+    <events-filter></events-filter>
   </div>
-  <ng-container *ngFor="let event of eventsState.events">
-    <event [event]="event" *ngIf="event.filtered" (details)="onToggleEventDetails(event.id)" (duplicate)="onDuplicateEvent(event.id)" (delete)="onDeleteEvent(event.id)">
-    </event>
-  </ng-container>
-  <event-add (addSubmit)="onAddSubmit($event)"></event-add>
+
+  <div *ngIf="events$ | async as events">
+    <h3 *ngIf="events.length">Ongoing and Upcoming Events</h3>
+    <ng-container *ngFor="let event of events">
+      <event [event]="event"></event>
+    </ng-container>
+  </div>
+
+  <div *ngIf="pastEvents$ | async as pastEvents">
+    <h3 *ngIf="pastEvents.length">Past Events</h3>
+    <ng-container *ngFor="let event of pastEvents">
+      <event [event]="event"></event>
+    </ng-container>
+  </div>
+
+  <div *ngIf="!events?.length && !pastEvents?.length">No event found.</div>
+  <event-add></event-add>
 </div>

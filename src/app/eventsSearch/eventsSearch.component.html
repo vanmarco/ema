@@ -1,6 +1,9 @@
 <form>
   <div>
     <label for="eventsSearch">Search events</label>
-    <input type="text" name="eventsSearch" value="" (keyup)="this.searchChange.emit($event)"/>
+    <input 
+      type="text" name="eventsSearch" value="" 
+      (keyup)="keyupEvent$.next($event.target.value)"
+    />
   </div>
 </form>
